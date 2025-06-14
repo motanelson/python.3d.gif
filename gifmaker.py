@@ -62,10 +62,9 @@ def render_gif():
     pygame.init()
     display = (800, 600)
     
-    screen=DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN | DOUBLEBUF | OPENGL)
-    
+    DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN | DOUBLEBUF | OPENGL)
     pygame.display.set_caption("Visualizador 3D - Faces do CSV")
-
+    
     # Fundo amarelo
     glClearColor(1.0, 1.0, 0.0, 1.0)
     glEnable(GL_DEPTH_TEST)
@@ -102,14 +101,14 @@ def render_gif():
         glPushMatrix()
         glRotatef(angulo % 360, 0, 1, 0)  # Rotação no eixo Y
         desenhar_faces(faces)
+        
+        glPopMatrix()
+
+        pygame.display.flip()
         # Captura da imagem
         screenshot = pyautogui.screenshot()
         frames.append(screenshot)
         
-
-        glPopMatrix()
-
-        pygame.display.flip()
 
 
         
